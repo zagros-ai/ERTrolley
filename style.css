@@ -1,0 +1,1119 @@
+/* معرفی فونت آفلاین Vazir.ttf */
+@font-face {
+    font-family: 'Vazir';
+    src: url('fonts/Vazir.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --bg-body: #f4f7f9;
+    --bg-container: rgba(255, 255, 255, 0.85);
+    --text-primary: #2c3e50;
+    --text-secondary: #5d6d7e;
+    --accent-primary: #3498db;
+    --danger-color: #d32f2f;
+    --warning-color: #f39c12;
+    --success-color: #27ae60;
+}
+
+/* متغیرهای حالت شب */
+body.dark-mode {
+    --bg-primary: #18222d;
+    --bg-secondary: #212d3b;
+    --bg-tertiary: #2a3a4b;
+    --border-color: #0f1923;
+    --text-primary: #ffffff;
+    --text-secondary: #a9b2bb;
+    --accent-primary: #5288c1;
+    --accent-hover: #6499c4;
+    --danger-color: #ef5350;
+    background-color: var(--bg-primary) !important;
+    background-image: none !important;
+    color: var(--text-primary);
+}
+
+/* اعمال فونت Vazir به کل المان‌های برنامه */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Vazir', Tahoma, sans-serif !important;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    direction: rtl;
+    text-align: right;
+    background-color: var(--bg-body);
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+    color: var(--text-primary);
+    user-select: none;
+    -webkit-user-select: none;
+    padding-top: 62px;
+    padding-bottom: 74px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* هدر سرمه‌ای گرادینت */
+.app-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 58px;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    z-index: 1000;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+body.dark-mode .app-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: #ff5252;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+    animation: pulse 1.8s infinite;
+    flex-shrink: 0;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(255, 82, 82, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
+}
+
+.brand h1 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.brand p {
+    font-size: 0.65rem;
+    color: #ecf0f1;
+    opacity: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* سوییچ تغییر تم روز/شب */
+.theme-toggle {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+    cursor: pointer;
+    margin: 0;
+}
+.theme-toggle input { opacity: 0; width: 0; height: 0; }
+.theme-toggle .slider-theme {
+    position: absolute;
+    inset: 0;
+    background-color: #73C0FC;
+    border-radius: 24px;
+    transition: background-color 0.4s ease;
+}
+.theme-toggle .slider-theme .icons {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 18px;
+    width: 18px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle input:checked + .slider-theme { background-color: #5288c1; }
+.theme-toggle input:checked + .slider-theme .icons { transform: translateX(24px); }
+.theme-toggle .icons svg {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    transition: opacity 0.2s ease, transform 0.4s ease;
+}
+.theme-toggle .icons .sun { color: #FDB813; opacity: 1; transform: rotate(0deg); }
+.theme-toggle .icons .moon { color: #2c3e50; opacity: 0; transform: rotate(-90deg); }
+.theme-toggle input:checked + .slider-theme .icons .sun { opacity: 0; transform: rotate(90deg); }
+.theme-toggle input:checked + .slider-theme .icons .moon { opacity: 1; transform: rotate(0deg); }
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-btn:active { transform: scale(0.9); }
+
+/* کانتینر اصلی شیشه‌ای */
+.app-content {
+    max-width: 540px;
+    margin: 8px auto;
+    padding: 12px 10px;
+    background: var(--bg-container);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode .app-content {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.tab-view { display: none; animation: fadeIn 0.25s ease; }
+.tab-view.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* دکمه‌های انتخاب کشو */
+.segment-control {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: rgba(44, 62, 80, 0.08);
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+body.dark-mode .segment-control { background: var(--bg-primary); }
+
+.segment-btn {
+    background: transparent;
+    border: none;
+    color: #2c3e50;
+    padding: 9px 6px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+body.dark-mode .segment-btn { color: var(--text-secondary); }
+
+.segment-btn.active {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .segment-btn.active { background: var(--accent-primary); }
+
+/* نوار راهنمای مارپیچی */
+.layout-guide-bar {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(44, 62, 80, 0.12);
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+body.dark-mode .layout-guide-bar {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.guide-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    flex-wrap: wrap;
+}
+
+.badge-snake {
+    background: #27ae60;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.68rem;
+}
+
+/* سوییچ مارپیچی */
+.toggle-switch { position: relative; width: 42px; height: 22px; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; inset: 0;
+    background-color: #bdc3c7; transition: .25s; border-radius: 24px;
+}
+.slider:before {
+    position: absolute; content: ""; height: 16px; width: 16px;
+    left: 3px; bottom: 3px; background-color: white; transition: .25s; border-radius: 50%;
+}
+input:checked + .slider { background-color: #27ae60; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* راهنمای رنگ‌بندی بالای کشو */
+.drawer-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    font-size: 0.69rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+body.dark-mode .drawer-legend {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+.dot.high-alert { background: rgba(248, 187, 208, 0.95); border: 2px solid #d32f2f; }
+.dot.lasa { background: rgba(255, 249, 196, 0.95); border: 2px solid #f59e0b; }
+.dot.fridge { background: rgba(187, 222, 251, 0.95); border: 2px dashed #1976d2; }
+
+/* ================= باکس کشوی ترالی: شفاف، روشن، ساده و زیبا (حذف کامل خاکستری تیره) ================= */
+.drawer-box {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(240, 247, 244, 0.75) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(44, 62, 80, 0.12);
+    border-radius: 18px;
+    padding: 8px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(31, 38, 135, 0.07);
+}
+
+body.dark-mode .drawer-box {
+    background: rgba(24, 34, 45, 0.65);
+    border-color: var(--border-color);
+}
+
+.drawer-back-label, .drawer-front-label {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 6px;
+    border-radius: 10px;
+    color: #2c3e50;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(44, 62, 80, 0.12);
+}
+
+.drawer-front-label {
+    background: linear-gradient(135deg, rgba(200, 230, 201, 0.85) 0%, rgba(165, 214, 167, 0.85) 100%);
+    border-color: #81c784;
+    color: #1b5e20;
+    margin-top: 8px;
+}
+
+.drawer-back-label { margin-bottom: 8px; }
+
+body.dark-mode .drawer-back-label,
+body.dark-mode .drawer-front-label {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.drawer-rows-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+/* هر ردیف شلف داخل کشو: کاملاً شفاف و شیشه‌ای */
+.shelf-row-block {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(44, 62, 80, 0.1);
+    border-radius: 13px;
+    padding: 6px 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+body.dark-mode .shelf-row-block {
+    background: rgba(33, 45, 59, 0.55);
+    border-color: var(--border-color);
+}
+
+.shelf-row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.65rem;
+    color: #2c3e50;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 3px 8px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-weight: 800;
+    border: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+body.dark-mode .shelf-row-header {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.shelf-dir-badge {
+    color: #27ae60;
+    font-weight: 800;
+}
+
+body.dark-mode .shelf-dir-badge { color: #81c784; }
+
+/* گرید ۵ ستونه */
+.shelf-row-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 5px;
+    direction: rtl;
+    width: 100%;
+}
+
+/* ================= استایل ۴ دسته کارت دارو (فقط فاموتیدین آبی است) ================= */
+.cell-card {
+    border-radius: 11px;
+    padding: 5px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 86px;
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
+    border: 2px solid transparent;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cell-card:active { transform: scale(0.94); }
+
+/* ۱. داروهای هشدار بالا (High Alert) -> صورتی/قرمز شفاف */
+.cell-card.card-high-alert,
+.drug-item.card-high-alert {
+    background: rgba(248, 187, 208, 0.9);
+    border-color: #e91e63;
+}
+
+/* ۲. داروهای مشابه (LASA) -> زرد پاستلی شفاف */
+.cell-card.card-lasa,
+.drug-item.card-lasa {
+    background: rgba(255, 249, 196, 0.92);
+    border-color: #fbc02d;
+}
+
+/* ۳. فقط فاموتیدین (یخچالی) -> تنها کارت آبی‌رنگ در کل برنامه */
+.cell-card.card-fridge,
+.drug-item.card-fridge {
+    background: rgba(187, 222, 251, 0.92);
+    border: 2px dashed #1976d2;
+}
+
+/* ۴. سایر داروهای معمولی -> سبز نعنایی و پسته‌ای ملایم و شفاف (بدون هیچ رنگ آبی) */
+.cell-card.card-standard,
+.drug-item.card-standard {
+    background: rgba(200, 230, 201, 0.88);
+    border-color: #81c784;
+}
+
+.cell-card.card-standard-alt,
+.drug-item.card-standard-alt {
+    background: rgba(220, 237, 200, 0.88);
+    border-color: #aed581;
+}
+
+/* رنگ‌بندی متمایز در حالت شب (Dark Mode) */
+body.dark-mode .cell-card.card-high-alert,
+body.dark-mode .drug-item.card-high-alert {
+    background: linear-gradient(160deg, rgba(217, 83, 79, 0.35), var(--bg-secondary)) !important;
+    border-color: #ef5350 !important;
+}
+
+body.dark-mode .cell-card.card-lasa,
+body.dark-mode .drug-item.card-lasa {
+    background: linear-gradient(160deg, rgba(243, 156, 18, 0.32), var(--bg-secondary)) !important;
+    border-color: #f39c12 !important;
+}
+
+body.dark-mode .cell-card.card-fridge,
+body.dark-mode .drug-item.card-fridge {
+    background: linear-gradient(160deg, rgba(52, 152, 219, 0.35), var(--bg-secondary)) !important;
+    border: 2px dashed #64b5f6 !important;
+}
+
+body.dark-mode .cell-card.card-standard,
+body.dark-mode .drug-item.card-standard,
+body.dark-mode .cell-card.card-standard-alt,
+body.dark-mode .drug-item.card-standard-alt {
+    background: linear-gradient(160deg, rgba(39, 174, 96, 0.25), var(--bg-secondary)) !important;
+    border-color: #4caf50 !important;
+}
+
+/* خانه خالی در ردیف آخر: شفاف و ملایم */
+.cell-empty {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1.5px dashed rgba(44, 62, 80, 0.22);
+    border-radius: 11px;
+    min-height: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #7f8c8d;
+}
+
+body.dark-mode .cell-empty {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+.cell-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 2px;
+    min-height: 20px;
+}
+
+/* شماره دارو با پس‌زمینه شیشه‌ای روشن */
+.cell-num {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    padding: 1px 5px;
+    border-radius: 6px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .cell-num {
+    background: rgba(0, 0, 0, 0.45);
+    color: #ffffff;
+}
+
+/* ستاره بسیار درشت و برجسته (٭) */
+.cell-star {
+    color: #c0392b;
+    font-weight: 900;
+    font-size: 1.42rem;
+    line-height: 0.7;
+    display: inline-block;
+    text-shadow: 0 0 3px #ffffff;
+    transform: translateY(3px);
+}
+
+body.dark-mode .cell-star {
+    color: #fde047;
+    text-shadow: 0 0 6px rgba(250, 204, 21, 0.8);
+}
+
+.list-star {
+    color: #d35400;
+    font-weight: 900;
+    font-size: 1.45rem;
+    line-height: 0.8;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+body.dark-mode .list-star { color: #fde047; }
+
+.cell-name {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.22;
+    color: #2c3e50;
+    width: 100%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 2px 0;
+}
+
+body.dark-mode .cell-name { color: #ffffff; }
+
+.cell-qty {
+    font-size: 0.6rem;
+    text-align: center;
+    color: #1b5e20;
+    font-weight: 800;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 6px;
+    padding: 1px 2px;
+}
+
+body.dark-mode .cell-qty {
+    background: rgba(0, 0, 0, 0.35);
+    color: #81c784;
+}
+
+/* ================= تب دوم: لیست داروها ================= */
+.search-box {
+    position: sticky;
+    top: 58px;
+    background: var(--bg-container);
+    backdrop-filter: blur(8px);
+    padding: 8px 4px 10px;
+    z-index: 20;
+    border-radius: 12px;
+}
+
+body.dark-mode .search-box { background: var(--bg-secondary); }
+
+#searchInput {
+    width: 100%;
+    background: #ffffff;
+    border: 1.5px solid #bdc3c7;
+    color: #2c3e50;
+    padding: 10px 13px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    outline: none;
+}
+
+#searchInput:focus {
+    border-color: #27ae60;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.15);
+}
+
+body.dark-mode #searchInput {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.filter-chips {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-top: 8px;
+    scrollbar-width: none;
+}
+.filter-chips::-webkit-scrollbar { display: none; }
+
+.chip {
+    padding: 5px 11px;
+    background: #ffffff;
+    border: 1px solid #bdc3c7;
+    color: #2c3e50;
+    border-radius: 20px;
+    font-size: 0.73rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chip.active {
+    background: #27ae60;
+    color: white;
+    border-color: #219653;
+}
+
+body.dark-mode .chip {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+body.dark-mode .chip.active {
+    background: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+.drug-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.drug-item {
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
+    border: 2px solid transparent;
+    transition: transform 0.2s ease;
+}
+
+.drug-item:active { transform: scale(0.98); }
+
+.drug-info { min-width: 0; flex: 1; }
+
+.drug-info h3 {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    color: #2c3e50;
+    line-height: 1.4;
+}
+
+body.dark-mode .drug-info h3 { color: var(--text-primary); }
+
+.drug-info .tallman {
+    color: #2c3e50;
+    font-size: 0.74rem;
+    font-weight: 700;
+    direction: ltr;
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2px 7px;
+    border-radius: 5px;
+    border: 1px solid rgba(44, 62, 80, 0.2);
+}
+
+body.dark-mode .drug-info .tallman {
+    color: #81c784;
+    background: rgba(0, 0, 0, 0.35);
+    border-color: rgba(129, 199, 132, 0.3);
+}
+
+.drug-meta {
+    font-size: 0.72rem;
+    color: #34495e;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+body.dark-mode .drug-meta { color: var(--text-secondary); }
+
+.drug-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.qty-pill {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1b5e20;
+    border: 1px solid #81c784;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+body.dark-mode .qty-pill {
+    background: rgba(27, 94, 32, 0.6);
+    color: #81c784;
+    border-color: #2e7d32;
+}
+
+.tag-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+.tag-high { background: #d32f2f; color: #fff; }
+.tag-lasa { background: #f39c12; color: #fff; }
+
+/* ================= تب سوم: ماشین‌حساب احیا ================= */
+.calc-card {
+    background: linear-gradient(135deg, rgba(185, 246, 202, 0.9) 0%, rgba(169, 232, 188, 0.9) 100%);
+    border: 2px solid #27ae60;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 10px rgba(39, 174, 96, 0.12);
+}
+
+body.dark-mode .calc-card {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+.calc-card label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+body.dark-mode .calc-card label { color: var(--text-secondary); }
+
+.weight-control { display: flex; gap: 8px; margin-bottom: 10px; }
+
+.w-btn {
+    width: 50px;
+    background: #27ae60;
+    border: none;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+body.dark-mode .w-btn { background: var(--accent-primary); }
+
+#patientWeight {
+    flex: 1;
+    min-width: 0;
+    background: #ffffff;
+    border: 1.5px solid #27ae60;
+    color: #2c3e50;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+body.dark-mode #patientWeight {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.quick-weights {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 5px;
+}
+
+.qw-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #27ae60;
+    color: #2c3e50;
+    padding: 6px 2px;
+    border-radius: 15px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.qw-btn.active {
+    background: #2c3e50;
+    border-color: #2c3e50;
+    color: #ffffff;
+}
+
+body.dark-mode .qw-btn {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+body.dark-mode .qw-btn.active {
+    background: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+.calc-results { display: flex; flex-direction: column; gap: 10px; }
+
+.calc-item {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(39, 174, 96, 0.3);
+    border-right: 4px solid #27ae60;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .calc-item {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    border-right: 4px solid var(--accent-primary);
+}
+
+.calc-item-title {
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #2c3e50;
+}
+
+body.dark-mode .calc-item-title { color: var(--text-primary); }
+
+.calc-dose-highlight {
+    color: #1b5e20;
+    font-weight: 800;
+    font-size: 0.86rem;
+    margin: 6px 0;
+    background: rgba(232, 245, 233, 0.85);
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #a5d6a7;
+}
+
+body.dark-mode .calc-dose-highlight {
+    color: #81c784;
+    background: rgba(27, 94, 32, 0.45);
+    border-color: #2e7d32;
+}
+
+.calc-sub {
+    font-size: 0.74rem;
+    color: #5d6d7e;
+    line-height: 1.5;
+}
+
+body.dark-mode .calc-sub { color: var(--text-secondary); }
+
+/* ================= باتم شیت شیشه‌ای ================= */
+.sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s;
+}
+
+.sheet-backdrop.open { opacity: 1; pointer-events: auto; }
+
+.bottom-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(15px);
+    color: #2c3e50;
+    border-radius: 22px 22px 0 0;
+    z-index: 2100;
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
+    max-height: 82vh;
+    overflow-y: auto;
+    padding: 12px 18px 28px;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .bottom-sheet {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+.bottom-sheet.open { transform: translateY(0); }
+
+.sheet-handle {
+    width: 44px;
+    height: 5px;
+    background: #bdc3c7;
+    border-radius: 10px;
+    margin: 4px auto 14px;
+}
+
+.sheet-badge {
+    background: #e8f5e9;
+    color: #27ae60;
+    border: 1px solid #a5d6a7;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+body.dark-mode .sheet-badge {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.detail-row {
+    background: #f8f9fa;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-top: 9px;
+    font-size: 0.81rem;
+    line-height: 1.65;
+    border: 1px solid #e9ecef;
+    border-right: 4px solid #27ae60;
+}
+
+body.dark-mode .detail-row {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+    border-right-color: var(--accent-primary);
+}
+
+.detail-row strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 3px;
+}
+
+body.dark-mode .detail-row strong { color: var(--accent-primary); }
+
+.fridge-card-alert {
+    background: #e3f2fd;
+    border-right: 4px solid #1976d2;
+    color: #0d47a1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+body.dark-mode .fridge-card-alert {
+    background: #0c2b3d;
+    border-color: #084298;
+    color: #6ea8fe;
+}
+
+/* فوتر */
+.app-credits {
+    text-align: center;
+    padding: 14px 10px;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    margin-top: 18px;
+    color: white;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 0.74rem;
+    line-height: 1.7;
+}
+
+body.dark-mode .app-credits {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+}
+
+/* نوار پایین موبایل */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .bottom-nav {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: #81c784;
+    transform: translateY(-2px);
+}

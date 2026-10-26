@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" id="metaThemeColor" content="#2c3e50">
+    <title>ترالی احیا - ویرایش هشتم وزارت بهداشت</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="app-header">
+    <div class="header-top">
+        <div class="brand">
+            <span class="pulse-dot"></span>
+            <div>
+                <h1>ترالی احیا (نسخه ۰۸ وزارت بهداشت)</h1>
+                <p>چیدمان مارپیچی ۵ ستونه کشوی اول و دوم</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <label class="theme-toggle" title="تغییر حالت روز / شب">
+                <input type="checkbox" id="themeCheckbox">
+                <span class="slider-theme">
+                        <span class="icons">
+                            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </span>
+                    </span>
+            </label>
+
+            <button id="btnRules" class="icon-btn" title="راهنمای رنگ‌بندی و نکات نسخه ۰۸">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="app-content">
+
+    <section id="tab-layout" class="tab-view active">
+        <div class="segment-control">
+            <button class="segment-btn active" data-drawer="1">کشوی اول (۲۴ قلم)</button>
+            <button class="segment-btn" data-drawer="2">کشوی دوم (۱۶ قلم)</button>
+        </div>
+
+        <div class="layout-guide-bar">
+            <div class="guide-text">
+                <span class="badge-snake">بند ۵ دستورالعمل</span>
+                <span>مارپیچی: راست به چپ و جلو به عقب</span>
+            </div>
+            <label class="toggle-switch">
+                <input type="checkbox" id="snakeToggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- راهنمای واضح ۴ دسته کارت + ستاره -->
+        <div class="drawer-legend">
+            <div class="legend-item"><i class="dot high-alert"></i> هشدار بالا (قرمز)</div>
+            <div class="legend-item"><i class="dot lasa"></i> مشابه LASA (زرد)</div>
+            <div class="legend-item"><i class="dot fridge"></i> ❄️ یخچالی (بروشور)</div>
+            <div class="legend-item"><b class="cell-star" style="font-size:1.2rem;">٭</b> مانیتورینگ قلبی</div>
+        </div>
+
+        <div class="drawer-box">
+            <div class="drawer-back-label">انتهای کشو (عقب ترالی)</div>
+            <div id="drawerGrid"></div>
+            <div class="drawer-front-label">جلوی کشو (ردیف اول - شروع شماره ۱ از راست ⬅)</div>
+        </div>
+    </section>
+
+    <section id="tab-drugs" class="tab-view">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="جستجوی نام دارو، دوز، ردیف یا کاربرد...">
+            <div class="filter-chips">
+                <button class="chip active" data-filter="all">همه (۴۰)</button>
+                <button class="chip" data-filter="high">هشدار بالا (۱۰) 🟥</button>
+                <button class="chip" data-filter="lasa">مشابه (۱۰) 🟨</button>
+                <button class="chip" data-filter="star">ستاره‌دار (۱۸) ٭</button>
+                <button class="chip" data-filter="d1">کشوی ۱</button>
+                <button class="chip" data-filter="d2">کشوی ۲</button>
+            </div>
+        </div>
+        <div id="drugListContainer" class="drug-list"></div>
+    </section>
+
+    <section id="tab-calc" class="tab-view">
+        <div class="calc-card">
+            <label for="patientWeight">وزن بیمار (کیلوگرم):</label>
+            <div class="weight-control">
+                <button type="button" class="w-btn" data-step="-5">-۵</button>
+                <input type="number" id="patientWeight" value="70" min="3" max="200">
+                <button type="button" class="w-btn" data-step="5">+۵</button>
+            </div>
+            <div class="quick-weights">
+                <button class="qw-btn" data-w="10">۱۰ kg</button>
+                <button class="qw-btn" data-w="25">۲۵ kg</button>
+                <button class="qw-btn" data-w="50">۵۰ kg</button>
+                <button class="qw-btn active" data-w="70">۷۰ kg</button>
+                <button class="qw-btn" data-w="90">۹۰ kg</button>
+            </div>
+        </div>
+
+        <div id="calcResults" class="calc-results"></div>
+    </section>
+
+    <footer class="app-credits">
+        <p class="footer-supervisor">ناظر علمی: <strong>دکتر امیر سالاری</strong> (مدرس اورژانس و مراقبت‌های ویژه دانشگاه تهران)</p>
+        <p class="footer-designer">کدنویسی و توسعه‌دهنده: <strong>توکل پیری</strong> (پرستار بیمارستان امام خمینی تهران)</p>
+    </footer>
+
+</main>
+
+<div id="drugSheetBackdrop" class="sheet-backdrop"></div>
+<div id="drugSheet" class="bottom-sheet">
+    <div class="sheet-handle"></div>
+    <div id="sheetContent" class="sheet-body"></div>
+</div>
+
+<nav class="bottom-nav">
+    <button class="nav-item active" data-target="tab-layout">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>چیدمان کشوها</span>
+    </button>
+    <button class="nav-item" data-target="tab-drugs">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+        </svg>
+        <span>جدول ۱ و ۲</span>
+    </button>
+    <button class="nav-item" data-target="tab-calc">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+            <line x1="8" y1="6" x2="16" y2="6"></line>
+            <line x1="16" y1="14" x2="16" y2="18"></line>
+            <path d="M16 10h.01"></path>
+            <path d="M12 10h.01"></path>
+            <path d="M8 10h.01"></path>
+            <path d="M12 14h.01"></path>
+            <path d="M8 14h.01"></path>
+            <path d="M12 18h.01"></path>
+            <path d="M8 18h.01"></path>
+        </svg>
+        <span>دوز احیا</span>
+    </button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
